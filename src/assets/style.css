@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper {
+  background: url("./assets/background.png");
+}
+
+.wrapper--inner {
+  width: min(90vw, 1500px);
+  padding-block: 20px;
+  margin-inline: auto;
+}
+
+/*# sourceMappingURL=style.css.map */
