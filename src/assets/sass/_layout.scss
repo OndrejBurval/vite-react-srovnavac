@@ -7,11 +7,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root{
+  min-height: 100vh;
+  display: grid;
+  grid-auto-rows: max-content 1fr;
+}
+
+input{
+  -webkit-appearance: none !important;
+
+}
+
 .wrapper{
-  background: url("./assets/background.png");
+  background: url("../assets/background.png");
+  height: 100%;
 }
 .wrapper--inner{
-  width: min(90vw, 1500px);
+  width: min(90vw, 1400px);
   padding-block: 20px;
   margin-inline: auto;
+}
+
+.rs-dropdown-menu{
+  max-height: 500px;
+  overflow-y: auto;
+
+  button{
+    width: 100% !important;
+  }
+}
+
+h2{
+  margin-bottom: 20px !important;
 }

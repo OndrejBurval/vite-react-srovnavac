@@ -1,12 +1,32 @@
 import Logo from '../assets/logo.svg';
 
 export default function Header(){
+
+    const styles = {
+        backgroundImage: "linear-gradient(to right, #009FE3, #00CADD)",
+        height: "50px",
+    }
+
+    const innerStyles = {
+        width: "min(95vw, 1500px)",
+        marginInline: "auto"
+    }
+
+    const linkStyles = {
+        color: "white",
+        display: "flex",
+        alignItems: "center",
+        gap: "20px"
+    }
+
     return (
-        <nav className="navbar navbar-light animated fadeIn" role="navigation" style={{ backgroundImage: "linear-gradient(to right, #009FE3, #00CADD)" }}>
-            <a className="navbar-brand regular" style={{ marginLeft: "17%", color: "white" }} href="/home">
-                <img src={ Logo } alt="eBRÁNA logo" width="70px" height="50px" style={{ marginRight: "12%", fontSize: "24px" }} />
-                Srovnávač zboží
-            </a>
+        <nav style={ styles }>
+            <div style={ innerStyles }>
+                <a href="/" style={ linkStyles }>
+                    <img src={ Logo } alt="eBRÁNA logo" width="70px" height="50px"  />
+                    Srovnávač zboží
+                </a>
+            </div>
         </nav>
     )
 }

@@ -17,11 +17,11 @@ export default function Product({title, brand, link, objectID, imageLink, desc, 
             <span>
                 { brand.toUpperCase() }
             </span>
-            <h2>
+            <h3>
                 <a href={ link } target="_blank" rel="noopener noreferrer">
                     { title.substring(0, 25) + "..." }
                 </a>
-            </h2>
+            </h3>
             <img id={ objectID }
                  src={ imageLink }
                  alt={ title.substring(0, title.length - 1) }
