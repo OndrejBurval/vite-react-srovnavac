@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import Product from "./Product";
 import { Button } from "rsuite";
 
-export default function ProductList({price, brand, search, setSearch, sort}){
+export default function ProductList({price, brand, search, sort, liveSearch}){
 
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(9)
     const [disabled, setDisabled] = useState(false)
     const [btnText, setBtnText] = useState("Zobrazit více položek +")
 
+
+    // Price change
     useEffect(() => {
         if (!price) return
         let fetchURL = `https://srovnavac-backend.herokuapp.com/getProductsByPrice/${search}/${price}`
@@ -20,6 +22,7 @@ export default function ProductList({price, brand, search, setSearch, sort}){
             .then(data => setData(data));
     }, [price])
 
+    // Brand change
     useEffect(() => {
         if (!brand) return
         fetch(`https://srovnavac-backend.herokuapp.com/getProductsByBrand/${brand}`)
@@ -27,14 +30,15 @@ export default function ProductList({price, brand, search, setSearch, sort}){
             .then(data => setData(data));
     }, [brand])
 
+    // Data, Limit change
     useEffect(() => {
         data.length <= limit ? setDisabled(true) : setDisabled(false)
     }, [data, limit])
 
 
-    // TODO live search
+    // Live Search
     useEffect(() => {
-        if (search.length < 1) return
+        if (search.length < 1 || !liveSearch) return
         setLimit(9)
 
         fetch(`https://srovnavac-backend.herokuapp.com/search/${search}`)
@@ -43,7 +47,7 @@ export default function ProductList({price, brand, search, setSearch, sort}){
     }, [search])
 
 
-
+    // Init data
     useEffect(() => {
         fetch(`https://srovnavac-backend.herokuapp.com/search/${search}`)
             .then(response => response.json())
@@ -51,10 +55,9 @@ export default function ProductList({price, brand, search, setSearch, sort}){
     }, [])
 
 
-
     const sortFunc = (a ,b) => {
-        if (sort === 0) return a.price - b.price
-        if (sort === 1) return b.price - a.price
+        if (sort === "asc") return a.price - b.price
+        if (sort === "desc") return b.price - a.price
         return null
     }
 

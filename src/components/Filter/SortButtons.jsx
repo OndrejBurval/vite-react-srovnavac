@@ -2,9 +2,6 @@ import {RadioGroup, Form, Radio} from "rsuite";
 
 export default function SortButtons({ setSort }){
 
-    const asc = (a, b) => b - a
-    const desc = (a, b) => a - b
-
 
     const styles = {
         radioGroupLabel: {
@@ -15,12 +12,11 @@ export default function SortButtons({ setSort }){
         }
     };
 
-
     return (
         <Form.Group controlId="sortList" style={styles}>
             <RadioGroup  name="sortList" appearance="picker">
-                <Radio onChange={ value => setSort(value) } value={ 0 }> Vzestupně </Radio>
-                <Radio onChange={ value => setSort(value) } value={ 1 }> Sestupně </Radio>
+                <Radio onChange={ value => setSort(value) } value="asc"> Vzestupně </Radio>
+                <Radio onChange={ value => setSort(value) } value="desc"> Sestupně </Radio>
             </RadioGroup>
         </Form.Group>
     )
