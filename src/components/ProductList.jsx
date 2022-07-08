@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "./Product";
 import { Button } from "rsuite";
 
-export default function ProductList({price, brand, search}){
+export default function ProductList({price, brand, search, setSearch, sort}){
 
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(9)
@@ -13,6 +13,7 @@ export default function ProductList({price, brand, search}){
         if (!price) return
         let fetchURL = `https://srovnavac-backend.herokuapp.com/getProductsByPrice/${search}/${price}`
         if (brand) fetchURL = `https://srovnavac-backend.herokuapp.com/getProductsByPrice/${brand}/${price}`
+        setLimit(9)
 
         fetch(fetchURL)
             .then(response => response.json())
@@ -30,20 +31,17 @@ export default function ProductList({price, brand, search}){
         data.length <= limit ? setDisabled(true) : setDisabled(false)
     }, [data, limit])
 
+
+    // TODO live search
     useEffect(() => {
+        if (search.length < 1) return
+        setLimit(9)
+
         fetch(`https://srovnavac-backend.herokuapp.com/search/${search}`)
             .then(response => response.json())
             .then(data => setData(data));
     }, [search])
 
-
-    // TODO live search
-    // useEffect(() => {
-    //     if (search.length < 1) return
-    //     fetch(`https://srovnavac-backend.herokuapp.com/search/${search}`)
-    //         .then(response => response.json())
-    //         .then(data => setData(data));
-    // }, [search])
 
 
     useEffect(() => {
@@ -53,7 +51,14 @@ export default function ProductList({price, brand, search}){
     }, [])
 
 
-    const listProducts = data.slice(0, limit).map((product, key) =>
+
+    const sortFunc = (a ,b) => {
+        if (sort === 0) return a.price - b.price
+        if (sort === 1) return b.price - a.price
+        return null
+    }
+
+    const listProducts = data.sort(sortFunc).slice(0, limit).map((product, key) =>
         <Product
             key={key}
             title={product.title}

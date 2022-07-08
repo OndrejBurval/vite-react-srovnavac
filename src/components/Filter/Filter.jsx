@@ -1,10 +1,11 @@
 import FilterSlider from "./FilterSlider";
 import BrandsDropdown from "./BrandsDropdown";
+import SortButtons from "./SortButtons";
 
 
-export default function Filter({ price, setPrice, setBrand, brand }){
+export default function Filter({ price, setPrice, setBrand, brand, setSort }){
 
-    const onSliderChange = (value) => setPrice(value)
+    const onPriceChange = (value) => setPrice(value)
 
     const styles = {
         background: "white",
@@ -24,10 +25,15 @@ export default function Filter({ price, setPrice, setBrand, brand }){
                     <strong>
                         Cena
                     </strong>
-                    <span>
-                        Do { price } Kč
-                    </span>
-                    <FilterSlider price={price} onSliderChange={onSliderChange}/>
+
+                    <FilterSlider price={ price } onPriceChange={ onPriceChange }/>
+                </div>
+
+                <div className="group">
+                    <strong>
+                        Seřadit:
+                    </strong>
+                    <SortButtons setSort={ setSort } />
                 </div>
 
                 <div className="group">
