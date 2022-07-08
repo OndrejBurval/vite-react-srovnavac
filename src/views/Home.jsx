@@ -4,9 +4,12 @@ import Filter from "../components/Filter"
 import {useState} from "react";
 
 export default function Home(){
+    const urlParams = new URLSearchParams(window.location.search)
 
     const [price, setPrice] = useState(50000)
     const [brand, setBrand] = useState()
+    const [search, setSearch] = useState(urlParams.get("search") ? decodeURIComponent(urlParams.get("search")) : "mosaz") //)
+
 
     const sectionStyle = {
         display: "grid",
@@ -16,10 +19,10 @@ export default function Home(){
 
     return(
         <>
-            <SearchBar />
+            <SearchBar setSearch={ setSearch } />
             <section style={ sectionStyle }>
                 <Filter brand={ brand } setBrand={ setBrand } price={ price } setPrice={ setPrice } />
-                <ProductList price={ price } brand={ brand } />
+                <ProductList price={ price } brand={ brand } search={ search } setSearch={ setSearch } />
             </section>
         </>
 

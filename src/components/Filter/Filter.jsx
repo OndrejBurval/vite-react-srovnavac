@@ -11,27 +11,35 @@ export default function Filter({ price, setPrice, setBrand, brand }){
         boxShadow: "rgb(0 0 0 / 10%) 0px 8px 16px",
         height: "max-content",
         padding: "10px",
-        borderRadius: "12px"
+        borderRadius: "12px",
     }
 
+
     return(
-        <div style={ styles }>
-            <h3>
-                Filtr
-            </h3>
-            <strong>
-                Cena
-            </strong> <br/>
-            <span>
-                Do { price } Kč
-            </span>
+        <div className="filterBox">
+            <div className="header"> <h3> Filter </h3> </div>
+            <div style={ styles }>
 
-            <FilterSlider price={price} onSliderChange={onSliderChange}/>
+                <div className="group">
+                    <strong>
+                        Cena
+                    </strong>
+                    <span>
+                        Do { price } Kč
+                    </span>
+                    <FilterSlider price={price} onSliderChange={onSliderChange}/>
+                </div>
 
-            <strong>
-                Značka
-            </strong>
-            <BrandsDropdown setBrand={ setBrand } brand={ brand } />
+                <div className="group">
+                    <strong>
+                        Značka
+                    </strong>
+                    <BrandsDropdown setBrand={ setBrand } brand={ brand } />
+                </div>
+
+
+
+            </div>
         </div>
     )
 }
