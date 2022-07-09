@@ -1,0 +1,35 @@
+[type="number"]{
+  border: none;
+  border-bottom: solid rgba(0, 174, 239, 0.5) 1px;
+  -webkit-appearance: none;
+  outline: none !important;
+  text-align: center;
+  margin-inline: 5px;
+  padding-block: 5px;
+  color: rgba(87, 87, 87, 0.75);
+  transition: .25s;
+
+  &:focus{
+    color: rgba(87, 87, 87, 1);
+    border-bottom: solid rgba(0, 174, 239, 1) 1px;
+    background-color: rgba(0, 174, 239, 0.1);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+
+.rs-btn-primary{
+  background-image: linear-gradient(to right, rgb(0, 159, 227) 0%, rgb(0, 202, 221) 100%);
+  background-size: 200%;
+  background-position: right;
+  transition: .25s !important;
+  &:hover{
+    background-position: left;
+  }
+}
+

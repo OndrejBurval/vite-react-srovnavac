@@ -1,7 +1,8 @@
 import ProductList from "../components/ProductList";
 import SearchBar from "../components/SearchBar";
 import Filter from "../components/Filter"
-import {useState} from "react";
+import { useState } from "react";
+import styled from "styled-components";
 
 export default function Home(){
     const urlParams = new URLSearchParams(window.location.search)
@@ -23,11 +24,21 @@ export default function Home(){
     return(
         <>
             <SearchBar setSearch={ setSearch } setLiveSearch={ setLiveSearch } liveSearch={ liveSearch } />
-            <section style={ sectionStyle }>
+            <Content>
                 <Filter brand={ brand } setBrand={ setBrand } price={ price } setPrice={ setPrice } setSort={ setSort } />
                 <ProductList price={ price } brand={ brand } search={ search } setSearch={ setSearch } sort={ sort } liveSearch={ liveSearch } />
-            </section>
+            </Content>
         </>
 
     )
 }
+
+
+const Content = styled.div`
+  display: grid;
+  gap: 20px;
+  
+  @media (min-width: 1024px){
+    grid-template-columns: 1fr 3fr;
+  }
+`

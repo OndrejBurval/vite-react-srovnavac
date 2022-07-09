@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
 import { Button } from "rsuite";
+import styled from "styled-components";
 
 export default function ProductList({price, brand, search, sort, liveSearch}){
 
@@ -76,32 +77,40 @@ export default function ProductList({price, brand, search, sort, liveSearch}){
 
     const handleClick = () => setLimit(oldValue => oldValue + 6)
 
-    const wrapperStyle = {
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "20px"
-    }
-
-    const fullWidthStyle = {
-        gridColumn: "1 / 4"
-    }
-
-    const buttonStyle = {
-        gridColumn: "1 / 4"
-    }
-
     const emptyMessage = (
-        <div style={ fullWidthStyle }>
+        <div >
             <h2> Omlouváme se, ale nenašli jsme žádné produkty dle vaší specifikace... </h2>
             <h3> Začněte znovu například vyhledáním produktu</h3>
         </div>
     )
 
     return(
-        <div className="productWrapper" style={ wrapperStyle }>
-            <div className="header"  style={ fullWidthStyle }> <h3> Výsledky vyhledávání </h3> </div>
-            { data.length === 0 ? emptyMessage : listProducts }
-            { !disabled && <Button onClick={handleClick} style={buttonStyle}> {btnText} </Button> }
-        </div>
+        <Wrapper>
+            <h3> Výsledky vyhledávání </h3>
+            { data.length === 0 ? emptyMessage : (
+                <Content>
+                    { data.length === 0 ? emptyMessage : listProducts }
+                </Content>
+            ) }
+            { !disabled && <Button onClick={handleClick} appearance="primary" size="lg"> {btnText} </Button> }
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+  display: grid;
+  
+  [type="button"]{
+    margin-top: 20px;
+  }
+`
+
+const Content = styled.div`
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 1023px){
+      grid-template-columns: repeat(3, 1fr);
+    }
+`

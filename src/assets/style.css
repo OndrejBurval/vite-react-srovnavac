@@ -67,4 +67,35 @@ h3 {
   font-size: 1.2rem !important;
 }
 
+[type=number] {
+  border: none;
+  border-bottom: solid rgba(0, 174, 239, 0.5) 1px;
+  -webkit-appearance: none;
+  outline: none !important;
+  text-align: center;
+  margin-inline: 5px;
+  padding-block: 5px;
+  color: rgba(87, 87, 87, 0.75);
+  transition: 0.25s;
+}
+[type=number]:focus {
+  color: rgb(87, 87, 87);
+  border-bottom: solid rgb(0, 174, 239) 1px;
+  background-color: rgba(0, 174, 239, 0.1);
+}
+[type=number]::-webkit-outer-spin-button, [type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rs-btn-primary {
+  background-image: linear-gradient(to right, rgb(0, 159, 227) 0%, rgb(0, 202, 221) 100%);
+  background-size: 200%;
+  background-position: right;
+  transition: 0.25s !important;
+}
+.rs-btn-primary:hover {
+  background-position: left;
+}
+
 /*# sourceMappingURL=style.css.map */
