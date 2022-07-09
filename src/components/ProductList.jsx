@@ -78,10 +78,10 @@ export default function ProductList({price, brand, search, sort, liveSearch}){
     const handleClick = () => setLimit(oldValue => oldValue + 6)
 
     const emptyMessage = (
-        <div >
+        <Message>
             <h2> Omlouváme se, ale nenašli jsme žádné produkty dle vaší specifikace... </h2>
             <h3> Začněte znovu například vyhledáním produktu</h3>
-        </div>
+        </Message>
     )
 
     return(
@@ -108,9 +108,9 @@ const Wrapper = styled.div`
 const Content = styled.div`
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+`
 
-    @media (min-width: 1023px){
-      grid-template-columns: repeat(3, 1fr);
-    }
+const Message = styled.div`
+  text-align: center;
 `

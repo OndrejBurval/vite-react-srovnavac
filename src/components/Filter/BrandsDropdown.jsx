@@ -1,4 +1,5 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
 
 export default function BrandsDropdown({ setBrand, brand }){
     const selectInput = useRef()
@@ -23,25 +24,14 @@ export default function BrandsDropdown({ setBrand, brand }){
         setBrand(selectInput.current.value)
     }
 
-
-
     const btnText = brand ? brand : "Všechny značky"
 
-    const styles = {
-        background: "linear-gradient(to right, #009FE3, #00CADD)",
-        fontWeight: "bold",
-        padding: "10px 15px",
-        borderRadius: "10px",
-        border: "none",
-        boxShadow: "rgb(0 0 0 / 10%) 0px 8px 16px",
-    }
 
     return(
-        <>
-            <select onChange={ onChange } ref={ selectInput } style={ styles }>
-                { listBrands }
-            </select>
-        </>
+        <Select onChange={ onChange } ref={ selectInput }>
+            { listBrands }
+        </Select>
+
 
         // <Dropdown title={ btnText } trigger='click' style={styles}>
         //     { listBrands }
@@ -49,3 +39,12 @@ export default function BrandsDropdown({ setBrand, brand }){
         // </Dropdown>
     )
 }
+
+const Select = styled.select`
+  background: linear-gradient(to right, #009FE3, #00CADD);
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgb(0 0 0 / 10%) 0px 8px 16px;
+`

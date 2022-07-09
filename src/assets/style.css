@@ -5,12 +5,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.group {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
-}
-
 .header {
   height: min-content;
 }
