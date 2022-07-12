@@ -3,7 +3,7 @@ import Product from "./Product";
 import { Button } from "rsuite";
 import styled from "styled-components";
 
-export default function ProductList({price, brand, search, sort, liveSearch}){
+export default function ProductList({price, minPrice,brand, search, sort, liveSearch}){
 
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(9)
@@ -62,7 +62,9 @@ export default function ProductList({price, brand, search, sort, liveSearch}){
         return null
     }
 
-    const listProducts = data.sort(sortFunc).slice(0, limit).map((product, key) =>
+
+
+    const listProducts = data.filter((a) => (a.price > minPrice && a )).sort(sortFunc).slice(0, limit).map((product, key) =>
         <Product
             key={key}
             title={product.title}

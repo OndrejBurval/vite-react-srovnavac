@@ -4,10 +4,7 @@ import SortButtons from "./SortButtons";
 import styled from "styled-components";
 
 
-export default function Filter({ price, setPrice, setBrand, brand, setSort }){
-
-    const onPriceChange = (value) => setPrice(value)
-
+export default function Filter({ price, setPrice, setBrand, brand, setSort, minPrice, setMinPrice }){
 
     return(
         <Wrapper>
@@ -19,7 +16,7 @@ export default function Filter({ price, setPrice, setBrand, brand, setSort }){
                         Cena
                     </strong>
 
-                    <FilterSlider price={ price } onPriceChange={ onPriceChange }/>
+                    <FilterSlider price={ price } setPrice={ setPrice } minPrice={ minPrice } setMinPrice={ setMinPrice }/>
                 </Group>
 
                 <Group>

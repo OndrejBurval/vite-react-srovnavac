@@ -33,10 +33,7 @@ export default function BrandsDropdown({ setBrand, brand }){
         setBrand(selectInput.current.value)
     }
 
-
-
     const btnText = brand ? brand : "Všechny značky"
-
 
     return(
         <Select onChange={ onChange } ref={ selectInput }>
