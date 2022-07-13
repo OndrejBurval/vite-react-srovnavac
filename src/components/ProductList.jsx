@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import { Button } from "rsuite";
+import { Button, Loader } from "rsuite";
 import styled from "styled-components";
 
 export default function ProductList({price, minPrice,brand, search, sort, liveSearch}){
@@ -9,11 +9,13 @@ export default function ProductList({price, minPrice,brand, search, sort, liveSe
     const [limit, setLimit] = useState(9)
     const [disabled, setDisabled] = useState(false)
     const [btnText, setBtnText] = useState("Zobrazit více položek +")
+    const [loaded, setLoaded] = useState(false)
 
 
     // Price change
     useEffect(() => {
         if (!price) return
+        setLoaded(false)
         let fetchURL = `https://srovnavac-backend.herokuapp.com/getProductsByPrice/${search}/${price}`
         if (brand) fetchURL = `https://srovnavac-backend.herokuapp.com/getProductsByPrice/${brand}/${price}`
         setLimit(9)
@@ -21,18 +23,22 @@ export default function ProductList({price, minPrice,brand, search, sort, liveSe
         fetch(fetchURL)
             .then(response => response.json())
             .then(data => setData(data));
+        setLoaded(true)
     }, [price])
 
     // Brand change
     useEffect(() => {
         if (!brand) return
+        setLoaded(false)
         fetch(`https://srovnavac-backend.herokuapp.com/getProductsByBrand/${brand}`)
             .then(response => response.json())
             .then(data => setData(data));
+        setLoaded(true)
     }, [brand])
 
     // Data, Limit change
     useEffect(() => {
+        setLoaded(false)
         data.length <= limit ? setDisabled(true) : setDisabled(false)
     }, [data, limit])
 
@@ -53,6 +59,7 @@ export default function ProductList({price, minPrice,brand, search, sort, liveSe
         fetch(`https://srovnavac-backend.herokuapp.com/search/${search}`)
             .then(response => response.json())
             .then(data => setData(data));
+        setLoaded(true)
     }, [])
 
 
@@ -86,12 +93,20 @@ export default function ProductList({price, minPrice,brand, search, sort, liveSe
         </Message>
     )
 
+    const loadingMessage = (
+        <Message>
+            <Loader content="Vyhledávání produktů..." vertical speed={"slow"}/>
+        </Message>
+    )
+
+    const message = loaded ? loadingMessage : emptyMessage
+
     return(
         <Wrapper>
             <h3> Výsledky vyhledávání </h3>
-            { data.length === 0 ? emptyMessage : (
+            { data.length === 0 ? message : (
                 <Content>
-                    { data.length === 0 ? emptyMessage : listProducts }
+                    { listProducts }
                 </Content>
             ) }
             { !disabled && <Button onClick={handleClick} appearance="primary" size="lg"> {btnText} </Button> }

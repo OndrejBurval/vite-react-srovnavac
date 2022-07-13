@@ -12,8 +12,8 @@ export default function Product({title, brand, link, objectID, imageLink, desc, 
     return (
             <Card
                 whileHover={{ scale: 1.025 }}
-                initial={{ y: -10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                initial={{ y: -10, opacity: 0, scale: .95 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ type: "spring" }}
                 href={ includesPrefix ? link  : (`https://${link}`) }

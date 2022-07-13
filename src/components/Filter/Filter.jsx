@@ -37,7 +37,9 @@ export default function Filter({ price, setPrice, setBrand, brand, setSort, minP
     )
 }
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+
+`
 
 const Content = styled.div`
   background: white;
@@ -46,6 +48,11 @@ const Content = styled.div`
   padding: 10px;
   border-radius: 12px;
   width: 100%;
+  
+  @media (min-width: 1024px){
+    position: sticky;
+    top: 20px;
+  }
 `
 const Group = styled.div`
   display: flex;
